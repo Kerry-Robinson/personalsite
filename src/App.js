@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react"
+import { Box, Grommet, ResponsiveContext } from "grommet"
+import Layout from "./layouts/main"
+import Router from "./router/index"
+import theme from "./theme"
 
 function App() {
+  const [showSidebar, setShowSidebar] = useState(true)
+  const [darkMode, setDarkMode] = useState(false)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Grommet theme={theme} full themeMode={darkMode ? "dark" : "light"}>
+      <ResponsiveContext.Consumer>
+        {size => (
+          <Box fill>
+            <Layout
+              size={size}
+              showSidebar={showSidebar}
+              setShowSidebar={setShowSidebar}
+              Router={Router}
+              setDarkMode={() => setDarkMode(!darkMode)}
+            />
+          </Box>
+        )}
+      </ResponsiveContext.Consumer>
+    </Grommet>
+  )
 }
 
-export default App;
+export default App
