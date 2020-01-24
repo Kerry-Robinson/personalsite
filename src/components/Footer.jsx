@@ -1,5 +1,5 @@
 import React from "react"
-import { Footer, Anchor, Box } from "grommet"
+import { Anchor, Box } from "grommet"
 import { Github, Linkedin, Instagram } from "grommet-icons"
 
 const accounts = [
@@ -20,18 +20,25 @@ const accounts = [
   }
 ]
 const SocialMenu = () => (
-  <Footer justify="center">
-    <Box direction="row" gap="xxsmall" justify="center">
-      {accounts.map(account => (
-        <Anchor
-          key={account.name}
-          icon={account.icon}
-          href={account.href}
-          hoverIndicator
-          target="_blank"
-        />
-      ))}
-    </Box>
-  </Footer>
+  <Box
+    justify="center"
+    fill="horizontal"
+    elevation="small"
+    background="light-1"
+    style={{ bottom: 0, position: "fixed" }}
+    direction="row"
+    gap="xsmall"
+    height="xxsmall"
+  >
+    {accounts.map(account => (
+      <Anchor
+        key={account.name}
+        icon={account.icon}
+        href={account.href}
+        hoverIndicator
+        target="_blank"
+      />
+    ))}
+  </Box>
 )
 export default SocialMenu

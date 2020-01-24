@@ -1,19 +1,16 @@
 import React from "react"
-import { Box, List } from "grommet"
+import { Menu } from "grommet"
+import { Menu as MenuIcon } from "grommet-icons"
 import ROUTES from "../router/paths"
 
-const SideNav = () => {
-  return (
-    <Box flex fill direction="column" align="center" pad="large">
-      <List
-        data={ROUTES}
-        primaryKey="display"
-        pad={{ horizontal: "xlarge", vertical: "medium" }}
-        gap="large"
-        // eslint-disable-next-line no-return-assign
-        onClickItem={event => (window.location.href = event.item.path)}
-      />
-    </Box>
-  )
+const NavMenu = () => {
+  const menuItems = ROUTES.map(route => {
+    return {
+      label: route.display,
+      // eslint-disable-next-line no-return-assign
+      onClick: () => (window.location.href = route.path)
+    }
+  })
+  return <Menu icon={<MenuIcon />} items={menuItems} />
 }
-export default SideNav
+export default NavMenu

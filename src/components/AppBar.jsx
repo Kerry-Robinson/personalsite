@@ -1,6 +1,6 @@
 import React from "react"
-import { Menu, FormView } from "grommet-icons"
-import { Box, Button } from "grommet"
+import { FormView } from "grommet-icons"
+import { Box, Button, Heading } from "grommet"
 import PropTypes from "prop-types"
 
 const Bar = props => (
@@ -10,33 +10,34 @@ const Bar = props => (
     align="center"
     justify="between"
     pad={{ left: "medium", right: "small", vertical: "small" }}
-    style={{ zIndex: "1" }}
+    style={{ zIndex: "1", position: "fixed" }}
+    elevation="small"
+    background="brand"
+    flex="grow"
+    fill="horizontal"
     // eslint-disable-next-line react/jsx-props-no-spreading
     {...props}
   />
 )
 
-const AppBar = ({ showSidebar = false, setShowSidebar, setDarkMode }) => {
+const AppBar = ({ setDarkMode, Nav }) => {
   return (
     <Bar>
-      <Button
-        icon={<Menu />}
-        hoverIndicator
-        onClick={() => setShowSidebar(!showSidebar)}
-      />
+      <Nav />
+      <Heading size="small" margin="none">
+        Designs Suspect
+      </Heading>
       <Button icon={<FormView />} hoverIndicator onClick={setDarkMode} />
     </Bar>
   )
 }
 AppBar.propTypes = {
-  showSidebar: PropTypes.bool,
-  setShowSidebar: PropTypes.func,
+  Nav: PropTypes.func,
   setDarkMode: PropTypes.func
 }
 AppBar.defaultProps = {
-  showSidebar: false,
-  setShowSidebar: () => {
-    throw new Error("Populate setShowSidebar")
+  Nav: () => {
+    throw new Error("Populate Nav")
   },
   setDarkMode: () => {
     throw new Error("Populate setDarkMode")
